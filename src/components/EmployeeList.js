@@ -13,8 +13,9 @@ const EmployeeList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await EmployeeService.getEmployees();
-        setEmployees(response.data);
+        const res = await EmployeeService.getEmployees();
+        console.log(res);
+        setEmployees(res.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -26,13 +27,15 @@ const EmployeeList = () => {
 
   const deleteEmployee = (e, id) => {
     e.preventDefault();
-    EmployeeService.deleteEmployee(id).then((res) => {
-      if (employees) {
-        setEmployees((prevElement) => {
-          return prevElement.filter((employee) => employee.id !== id);
-        });
-      }
-    });
+    EmployeeService.deleteEmployee(id)
+      .then((res) => {
+        console.log(res);
+        if (employees) {
+          setEmployees((prevElement) => {
+            return prevElement.filter((employee) => employee.id !== id);
+          });
+        }
+      });
   };
 
   return (

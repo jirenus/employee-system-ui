@@ -20,8 +20,9 @@ const UpdateEmployee = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await EmployeeService.getEmployeeById(id);
-                setEmployee(response.data);
+                const res = await EmployeeService.getEmployeeById(id);
+                console.log(res);
+                setEmployee(res.data.data);
             } catch (error) {
                 console.log(error);
             }
@@ -35,6 +36,7 @@ const UpdateEmployee = () => {
 
         EmployeeService.updateEmployee(employee, id)
             .then((res) => {
+                console.log(res);
                 navigate('/employees')
             }).catch((error) => {
                 console.log(error);
@@ -97,4 +99,4 @@ const UpdateEmployee = () => {
   )
 }
 
-export default UpdateEmployee
+export default UpdateEmployee;

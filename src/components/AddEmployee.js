@@ -20,20 +20,15 @@ const AddEmployee = () => {
 
     const saveEmployee = (e) => {
         e.preventDefault();
+        
         EmployeeService.saveEmployee(employee)
             .then((res) => {
+                console.log("then")
                 console.log(res);
                 navigate('/employees')
             }).catch((error) => {
                 console.log(error);
-            })
-        const data = {
-            id: employee.id,
-            firstName: employee.firstName,
-            lastName: employee.lastName,
-            emailId: employee.emailId
-        };
-        console.log(data);
+            });
     };
 
     const reset = (e) => {
